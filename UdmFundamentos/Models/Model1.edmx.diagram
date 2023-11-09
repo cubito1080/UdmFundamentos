@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b450fa0d4f86436eae00e583dbe9c904" Name="Diagram1">
+        <EntityTypeShape EntityType="UDMdbModel.Estudiante" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UDMdbModel.Estudiante_Materia" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UDMdbModel.Materia" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UDMdbModel.Postulacion" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UDMdbModel.Semestre" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UDMdbModel.Semestre_Estudiante" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UDMdbModel.Semestre_Materia" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UDMdbModel.Sesion" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="UDMdbModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UDMdbModel.Usuario" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="UDMdbModel.FK__Estudiant__estud__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="UDMdbModel.FK__Estudiant__usuar__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="UDMdbModel.FK__Postulaci__estud__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="UDMdbModel.FK__Semestre___estud__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="UDMdbModel.FK__Estudiant__mater__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="UDMdbModel.FK__Estudiant__semes__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="UDMdbModel.FK__Postulaci__mater__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="UDMdbModel.FK__Semestre___mater__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="UDMdbModel.FK__Semestre___semes__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="UDMdbModel.FK__Semestre___semes__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="UDMdbModel.FK__Sesion__usuario___35BCFE0A" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

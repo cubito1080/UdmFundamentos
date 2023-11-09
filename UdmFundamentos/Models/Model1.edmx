@@ -1,0 +1,714 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="UDMdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Estudiante">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cedula" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="apellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="promedio_general" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="usuario_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Estudiante_Materia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estudiante_id" Type="int" />
+          <Property Name="materia_id" Type="int" />
+          <Property Name="nota" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="semestre_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Materia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Postulacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estudiante_id" Type="int" />
+          <Property Name="materia_id" Type="int" />
+          <Property Name="razon" Type="nvarchar" MaxLength="255" />
+          <Property Name="nota_materia" Type="decimal" Precision="3" Scale="2" />
+        </EntityType>
+        <EntityType Name="Semestre">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Semestre_Estudiante">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estudiante_id" Type="int" />
+          <Property Name="semestre_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Semestre_Materia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="semestre_id" Type="int" />
+          <Property Name="materia_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Sesion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario_id" Type="int" />
+          <Property Name="correo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="correo" Type="nvarchar" MaxLength="50" />
+          <Property Name="contraseña" Type="nvarchar" MaxLength="20" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK__Estudiant__estud__30F848ED">
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="0..1" />
+          <End Role="Estudiante_Materia" Type="Self.Estudiante_Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiante_Materia">
+              <PropertyRef Name="estudiante_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Estudiant__mater__31EC6D26">
+          <End Role="Materia" Type="Self.Materia" Multiplicity="0..1" />
+          <End Role="Estudiante_Materia" Type="Self.Estudiante_Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiante_Materia">
+              <PropertyRef Name="materia_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Estudiant__semes__32E0915F">
+          <End Role="Semestre" Type="Self.Semestre" Multiplicity="0..1" />
+          <End Role="Estudiante_Materia" Type="Self.Estudiante_Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semestre">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiante_Materia">
+              <PropertyRef Name="semestre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Estudiant__usuar__267ABA7A">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Postulaci__estud__38996AB5">
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="0..1" />
+          <End Role="Postulacion" Type="Self.Postulacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Postulacion">
+              <PropertyRef Name="estudiante_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Postulaci__mater__398D8EEE">
+          <End Role="Materia" Type="Self.Materia" Multiplicity="0..1" />
+          <End Role="Postulacion" Type="Self.Postulacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Postulacion">
+              <PropertyRef Name="materia_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Semestre___estud__46E78A0C">
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="0..1" />
+          <End Role="Semestre_Estudiante" Type="Self.Semestre_Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Semestre_Estudiante">
+              <PropertyRef Name="estudiante_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Semestre___mater__2E1BDC42">
+          <End Role="Materia" Type="Self.Materia" Multiplicity="0..1" />
+          <End Role="Semestre_Materia" Type="Self.Semestre_Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Semestre_Materia">
+              <PropertyRef Name="materia_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Semestre___semes__2D27B809">
+          <End Role="Semestre" Type="Self.Semestre" Multiplicity="0..1" />
+          <End Role="Semestre_Materia" Type="Self.Semestre_Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semestre">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Semestre_Materia">
+              <PropertyRef Name="semestre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Semestre___semes__47DBAE45">
+          <End Role="Semestre" Type="Self.Semestre" Multiplicity="0..1" />
+          <End Role="Semestre_Estudiante" Type="Self.Semestre_Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semestre">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Semestre_Estudiante">
+              <PropertyRef Name="semestre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sesion__usuario___35BCFE0A">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Sesion" Type="Self.Sesion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sesion">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UDMdbModelStoreContainer">
+          <EntitySet Name="Estudiante" EntityType="Self.Estudiante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estudiante_Materia" EntityType="Self.Estudiante_Materia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materia" EntityType="Self.Materia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Postulacion" EntityType="Self.Postulacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Semestre" EntityType="Self.Semestre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Semestre_Estudiante" EntityType="Self.Semestre_Estudiante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Semestre_Materia" EntityType="Self.Semestre_Materia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sesion" EntityType="Self.Sesion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Estudiant__estud__30F848ED" Association="Self.FK__Estudiant__estud__30F848ED">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="Estudiante_Materia" EntitySet="Estudiante_Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Estudiant__mater__31EC6D26" Association="Self.FK__Estudiant__mater__31EC6D26">
+            <End Role="Materia" EntitySet="Materia" />
+            <End Role="Estudiante_Materia" EntitySet="Estudiante_Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Estudiant__semes__32E0915F" Association="Self.FK__Estudiant__semes__32E0915F">
+            <End Role="Semestre" EntitySet="Semestre" />
+            <End Role="Estudiante_Materia" EntitySet="Estudiante_Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Estudiant__usuar__267ABA7A" Association="Self.FK__Estudiant__usuar__267ABA7A">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Postulaci__estud__38996AB5" Association="Self.FK__Postulaci__estud__38996AB5">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="Postulacion" EntitySet="Postulacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Postulaci__mater__398D8EEE" Association="Self.FK__Postulaci__mater__398D8EEE">
+            <End Role="Materia" EntitySet="Materia" />
+            <End Role="Postulacion" EntitySet="Postulacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Semestre___estud__46E78A0C" Association="Self.FK__Semestre___estud__46E78A0C">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="Semestre_Estudiante" EntitySet="Semestre_Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Semestre___mater__2E1BDC42" Association="Self.FK__Semestre___mater__2E1BDC42">
+            <End Role="Materia" EntitySet="Materia" />
+            <End Role="Semestre_Materia" EntitySet="Semestre_Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Semestre___semes__2D27B809" Association="Self.FK__Semestre___semes__2D27B809">
+            <End Role="Semestre" EntitySet="Semestre" />
+            <End Role="Semestre_Materia" EntitySet="Semestre_Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Semestre___semes__47DBAE45" Association="Self.FK__Semestre___semes__47DBAE45">
+            <End Role="Semestre" EntitySet="Semestre" />
+            <End Role="Semestre_Estudiante" EntitySet="Semestre_Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sesion__usuario___35BCFE0A" Association="Self.FK__Sesion__usuario___35BCFE0A">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Sesion" EntitySet="Sesion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UDMdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Estudiante">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="promedio_general" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="usuario_id" Type="Int32" />
+          <NavigationProperty Name="Estudiante_Materia" Relationship="Self.FK__Estudiant__estud__30F848ED" FromRole="Estudiante" ToRole="Estudiante_Materia" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Estudiant__usuar__267ABA7A" FromRole="Estudiante" ToRole="Usuario" />
+          <NavigationProperty Name="Postulacion" Relationship="Self.FK__Postulaci__estud__38996AB5" FromRole="Estudiante" ToRole="Postulacion" />
+          <NavigationProperty Name="Semestre_Estudiante" Relationship="Self.FK__Semestre___estud__46E78A0C" FromRole="Estudiante" ToRole="Semestre_Estudiante" />
+        </EntityType>
+        <EntityType Name="Estudiante_Materia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estudiante_id" Type="Int32" />
+          <Property Name="materia_id" Type="Int32" />
+          <Property Name="nota" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="semestre_id" Type="Int32" />
+          <NavigationProperty Name="Estudiante" Relationship="Self.FK__Estudiant__estud__30F848ED" FromRole="Estudiante_Materia" ToRole="Estudiante" />
+          <NavigationProperty Name="Materia" Relationship="Self.FK__Estudiant__mater__31EC6D26" FromRole="Estudiante_Materia" ToRole="Materia" />
+          <NavigationProperty Name="Semestre" Relationship="Self.FK__Estudiant__semes__32E0915F" FromRole="Estudiante_Materia" ToRole="Semestre" />
+        </EntityType>
+        <EntityType Name="Materia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Estudiante_Materia" Relationship="Self.FK__Estudiant__mater__31EC6D26" FromRole="Materia" ToRole="Estudiante_Materia" />
+          <NavigationProperty Name="Postulacion" Relationship="Self.FK__Postulaci__mater__398D8EEE" FromRole="Materia" ToRole="Postulacion" />
+          <NavigationProperty Name="Semestre_Materia" Relationship="Self.FK__Semestre___mater__2E1BDC42" FromRole="Materia" ToRole="Semestre_Materia" />
+        </EntityType>
+        <EntityType Name="Postulacion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estudiante_id" Type="Int32" />
+          <Property Name="materia_id" Type="Int32" />
+          <Property Name="razon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="nota_materia" Type="Decimal" Precision="3" Scale="2" />
+          <NavigationProperty Name="Estudiante" Relationship="Self.FK__Postulaci__estud__38996AB5" FromRole="Postulacion" ToRole="Estudiante" />
+          <NavigationProperty Name="Materia" Relationship="Self.FK__Postulaci__mater__398D8EEE" FromRole="Postulacion" ToRole="Materia" />
+        </EntityType>
+        <EntityType Name="Semestre">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Estudiante_Materia" Relationship="Self.FK__Estudiant__semes__32E0915F" FromRole="Semestre" ToRole="Estudiante_Materia" />
+          <NavigationProperty Name="Semestre_Materia" Relationship="Self.FK__Semestre___semes__2D27B809" FromRole="Semestre" ToRole="Semestre_Materia" />
+          <NavigationProperty Name="Semestre_Estudiante" Relationship="Self.FK__Semestre___semes__47DBAE45" FromRole="Semestre" ToRole="Semestre_Estudiante" />
+        </EntityType>
+        <EntityType Name="Semestre_Estudiante">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estudiante_id" Type="Int32" />
+          <Property Name="semestre_id" Type="Int32" />
+          <NavigationProperty Name="Estudiante" Relationship="Self.FK__Semestre___estud__46E78A0C" FromRole="Semestre_Estudiante" ToRole="Estudiante" />
+          <NavigationProperty Name="Semestre" Relationship="Self.FK__Semestre___semes__47DBAE45" FromRole="Semestre_Estudiante" ToRole="Semestre" />
+        </EntityType>
+        <EntityType Name="Semestre_Materia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="semestre_id" Type="Int32" />
+          <Property Name="materia_id" Type="Int32" />
+          <NavigationProperty Name="Materia" Relationship="Self.FK__Semestre___mater__2E1BDC42" FromRole="Semestre_Materia" ToRole="Materia" />
+          <NavigationProperty Name="Semestre" Relationship="Self.FK__Semestre___semes__2D27B809" FromRole="Semestre_Materia" ToRole="Semestre" />
+        </EntityType>
+        <EntityType Name="Sesion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario_id" Type="Int32" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Sesion__usuario___35BCFE0A" FromRole="Sesion" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contraseña" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Estudiante" Relationship="Self.FK__Estudiant__usuar__267ABA7A" FromRole="Usuario" ToRole="Estudiante" />
+          <NavigationProperty Name="Sesion" Relationship="Self.FK__Sesion__usuario___35BCFE0A" FromRole="Usuario" ToRole="Sesion" />
+        </EntityType>
+        <Association Name="FK__Estudiant__estud__30F848ED">
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="0..1" />
+          <End Role="Estudiante_Materia" Type="Self.Estudiante_Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiante_Materia">
+              <PropertyRef Name="estudiante_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Estudiant__usuar__267ABA7A">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Postulaci__estud__38996AB5">
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="0..1" />
+          <End Role="Postulacion" Type="Self.Postulacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Postulacion">
+              <PropertyRef Name="estudiante_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Semestre___estud__46E78A0C">
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="0..1" />
+          <End Role="Semestre_Estudiante" Type="Self.Semestre_Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Semestre_Estudiante">
+              <PropertyRef Name="estudiante_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Estudiant__mater__31EC6D26">
+          <End Role="Materia" Type="Self.Materia" Multiplicity="0..1" />
+          <End Role="Estudiante_Materia" Type="Self.Estudiante_Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiante_Materia">
+              <PropertyRef Name="materia_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Estudiant__semes__32E0915F">
+          <End Role="Semestre" Type="Self.Semestre" Multiplicity="0..1" />
+          <End Role="Estudiante_Materia" Type="Self.Estudiante_Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semestre">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiante_Materia">
+              <PropertyRef Name="semestre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Postulaci__mater__398D8EEE">
+          <End Role="Materia" Type="Self.Materia" Multiplicity="0..1" />
+          <End Role="Postulacion" Type="Self.Postulacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Postulacion">
+              <PropertyRef Name="materia_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Semestre___mater__2E1BDC42">
+          <End Role="Materia" Type="Self.Materia" Multiplicity="0..1" />
+          <End Role="Semestre_Materia" Type="Self.Semestre_Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Semestre_Materia">
+              <PropertyRef Name="materia_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Semestre___semes__2D27B809">
+          <End Role="Semestre" Type="Self.Semestre" Multiplicity="0..1" />
+          <End Role="Semestre_Materia" Type="Self.Semestre_Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semestre">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Semestre_Materia">
+              <PropertyRef Name="semestre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Semestre___semes__47DBAE45">
+          <End Role="Semestre" Type="Self.Semestre" Multiplicity="0..1" />
+          <End Role="Semestre_Estudiante" Type="Self.Semestre_Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semestre">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Semestre_Estudiante">
+              <PropertyRef Name="semestre_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sesion__usuario___35BCFE0A">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Sesion" Type="Self.Sesion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sesion">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UDMdbEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Estudiante" EntityType="Self.Estudiante" />
+          <EntitySet Name="Estudiante_Materia" EntityType="Self.Estudiante_Materia" />
+          <EntitySet Name="Materia" EntityType="Self.Materia" />
+          <EntitySet Name="Postulacion" EntityType="Self.Postulacion" />
+          <EntitySet Name="Semestre" EntityType="Self.Semestre" />
+          <EntitySet Name="Semestre_Estudiante" EntityType="Self.Semestre_Estudiante" />
+          <EntitySet Name="Semestre_Materia" EntityType="Self.Semestre_Materia" />
+          <EntitySet Name="Sesion" EntityType="Self.Sesion" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK__Estudiant__estud__30F848ED" Association="Self.FK__Estudiant__estud__30F848ED">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="Estudiante_Materia" EntitySet="Estudiante_Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Estudiant__usuar__267ABA7A" Association="Self.FK__Estudiant__usuar__267ABA7A">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Postulaci__estud__38996AB5" Association="Self.FK__Postulaci__estud__38996AB5">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="Postulacion" EntitySet="Postulacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Semestre___estud__46E78A0C" Association="Self.FK__Semestre___estud__46E78A0C">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="Semestre_Estudiante" EntitySet="Semestre_Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Estudiant__mater__31EC6D26" Association="Self.FK__Estudiant__mater__31EC6D26">
+            <End Role="Materia" EntitySet="Materia" />
+            <End Role="Estudiante_Materia" EntitySet="Estudiante_Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Estudiant__semes__32E0915F" Association="Self.FK__Estudiant__semes__32E0915F">
+            <End Role="Semestre" EntitySet="Semestre" />
+            <End Role="Estudiante_Materia" EntitySet="Estudiante_Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Postulaci__mater__398D8EEE" Association="Self.FK__Postulaci__mater__398D8EEE">
+            <End Role="Materia" EntitySet="Materia" />
+            <End Role="Postulacion" EntitySet="Postulacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Semestre___mater__2E1BDC42" Association="Self.FK__Semestre___mater__2E1BDC42">
+            <End Role="Materia" EntitySet="Materia" />
+            <End Role="Semestre_Materia" EntitySet="Semestre_Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Semestre___semes__2D27B809" Association="Self.FK__Semestre___semes__2D27B809">
+            <End Role="Semestre" EntitySet="Semestre" />
+            <End Role="Semestre_Materia" EntitySet="Semestre_Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Semestre___semes__47DBAE45" Association="Self.FK__Semestre___semes__47DBAE45">
+            <End Role="Semestre" EntitySet="Semestre" />
+            <End Role="Semestre_Estudiante" EntitySet="Semestre_Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sesion__usuario___35BCFE0A" Association="Self.FK__Sesion__usuario___35BCFE0A">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Sesion" EntitySet="Sesion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UDMdbModelStoreContainer" CdmEntityContainer="UDMdbEntities1">
+          <EntitySetMapping Name="Estudiante">
+            <EntityTypeMapping TypeName="UDMdbModel.Estudiante">
+              <MappingFragment StoreEntitySet="Estudiante">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="promedio_general" ColumnName="promedio_general" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estudiante_Materia">
+            <EntityTypeMapping TypeName="UDMdbModel.Estudiante_Materia">
+              <MappingFragment StoreEntitySet="Estudiante_Materia">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="estudiante_id" ColumnName="estudiante_id" />
+                <ScalarProperty Name="materia_id" ColumnName="materia_id" />
+                <ScalarProperty Name="nota" ColumnName="nota" />
+                <ScalarProperty Name="semestre_id" ColumnName="semestre_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materia">
+            <EntityTypeMapping TypeName="UDMdbModel.Materia">
+              <MappingFragment StoreEntitySet="Materia">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Postulacion">
+            <EntityTypeMapping TypeName="UDMdbModel.Postulacion">
+              <MappingFragment StoreEntitySet="Postulacion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="estudiante_id" ColumnName="estudiante_id" />
+                <ScalarProperty Name="materia_id" ColumnName="materia_id" />
+                <ScalarProperty Name="razon" ColumnName="razon" />
+                <ScalarProperty Name="nota_materia" ColumnName="nota_materia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Semestre">
+            <EntityTypeMapping TypeName="UDMdbModel.Semestre">
+              <MappingFragment StoreEntitySet="Semestre">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Semestre_Estudiante">
+            <EntityTypeMapping TypeName="UDMdbModel.Semestre_Estudiante">
+              <MappingFragment StoreEntitySet="Semestre_Estudiante">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="estudiante_id" ColumnName="estudiante_id" />
+                <ScalarProperty Name="semestre_id" ColumnName="semestre_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Semestre_Materia">
+            <EntityTypeMapping TypeName="UDMdbModel.Semestre_Materia">
+              <MappingFragment StoreEntitySet="Semestre_Materia">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="semestre_id" ColumnName="semestre_id" />
+                <ScalarProperty Name="materia_id" ColumnName="materia_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sesion">
+            <EntityTypeMapping TypeName="UDMdbModel.Sesion">
+              <MappingFragment StoreEntitySet="Sesion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="UDMdbModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="UDMdbModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

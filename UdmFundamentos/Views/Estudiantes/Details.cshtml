@@ -1,0 +1,78 @@
+﻿@model UdmFundamentos.Models.Estudiante
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Estudiante</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.promedio_general)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.promedio_general)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.correo)
+        </dd>
+
+    </dl>
+    <h3>Materias</h3>
+    @foreach (var estudianteMateria in Model.Estudiante_Materia)
+    {
+        <div>
+            <h4>@estudianteMateria.Materia.nombre</h4>
+            <p>Nota: @estudianteMateria.nota</p>
+        </div>
+    }
+
+    <h3>Postulaciones</h3>
+    @foreach (var postulacion in Model.Postulacion)
+    {
+        <div>
+            <h4>@postulacion.Materia.nombre</h4>
+            <p>Razón: @postulacion.razon</p>
+            <p>Nota Materia: @postulacion.nota_materia</p>
+        </div>
+    }
+
+    <div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

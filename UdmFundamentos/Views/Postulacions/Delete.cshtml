@@ -1,0 +1,56 @@
+﻿@model UdmFundamentos.Models.Postulacion
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Postulacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.razon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.razon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nota_materia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nota_materia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estudiante.cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estudiante.cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Materia.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Materia.nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
