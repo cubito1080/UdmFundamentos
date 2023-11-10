@@ -4,9 +4,30 @@
     ViewBag.Title = "Crear Postulación";
 }
 
+<style>
+    body {
+        text-align: center;
+    }
+
+    .form-container {
+        width: 50%;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    .btn-red {
+        background-color: #FF0000;
+        color: #FFFFFF;
+    }
+
+    .center-text {
+        text-align: center;
+    }
+</style>
+
 <h2>Crear Postulación</h2>
 
-@using (Html.BeginForm("HacerPostulacion", "Estudiantes", FormMethod.Post))
+@using (Html.BeginForm("HacerPostulacion", "Estudiantes", FormMethod.Post, new { @class = "form-container" }))
 {
     @Html.AntiForgeryToken()
 
@@ -34,67 +55,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Crear Postulación" class="btn btn-default" />
+                <input type="submit" value="Crear Postulación" class="btn btn-default btn-red" />
             </div>
         </div>
     </div>
 }
 
-<div>
+<div class="center-text">
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">Postulaciones Para Monitoria Universidad De Medellin</h1>
-        <p class="parrafo-general">
-            ¡Bienvenido a nuestra plataforma de postulaciones de monitorías de la Universidad De Medellin! Aquí, estudiantes y administradores pueden participar activamente en el proceso de selección y asignación de monitorías académicas. Nuestra aplicación facilita la colaboración entre estudiantes interesados en desempeñar roles de monitor y administradores responsables de gestionar estos procesos.
-            <br />
-            <br />
-            Explora nuevas oportunidades de aprendizaje y contribuye al ambiente académico postulándote como monitor o supervisando el proceso de selección. ¡Juntos, construyamos un entorno educativo más sólido y enriquecedor!
-        </p>
-
-        <div class="botones">
-            <button onclick="location.href='@Url.Action("MostrarLoginAdministrador", "Flux")'" type="button" class="btn btn-primary administrador-btn">Soy Administrador</button>
-            <button onclick="location.href='@Url.Action("MostrarLoginEstudiante", "Flux")'" type="button" class="btn btn-primary usuario-btn">Soy Usuario</button>
-
-        </div>
-
-    </section>
-    <style>
-        body {
-            background-color: white; /* Fondo blanco */
-            color: black; /* Texto negro */
-            text-align: center; /* Centrar texto */
-        }
-
-        .row {
-            margin: 0 auto; /* Centrar la sección */
-            max-width: 600px; /* Establecer el ancho máximo */
-            padding: 20px; /* Añadir espacio alrededor del contenido */
-        }
-
-        h1 {
-            color: black; /* Título negro */
-        }
-
-        .parrafo-general, .parrafo-1 {
-            color: black; /* Texto negro */
-        }
-
-        .botones {
-            margin-top: 20px; /* Añadir espacio superior */
-        }
-
-        .btn {
-            background-color: red; /* Fondo rojo */
-            color: white; /* Texto blanco */
-            border: none; /* Sin borde */
-            padding: 10px 20px; /* Ajustar el relleno */
-            margin-right: 10px; /* Añadir espacio derecho entre botones */
-        }
-    </style>
-</main>
