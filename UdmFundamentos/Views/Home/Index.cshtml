@@ -2,32 +2,90 @@
     ViewBag.Title = "Home Page";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto de Selección de Monitores Académicos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: transparent; /* Sin color de fondo */
+            color: #ff0000; /* Texto en rojo */
+            text-align: center;
+            padding: 20px;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #ff0000; /* Títulos y subtítulos en rojo */
+            font-weight: bold; /* Negrita */
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        ol, ul {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Proyecto de Selección de Monitores Académicos</h1>
+    </header>
+
+    <section>
+        <h2>Objetivos del Proyecto</h2>
+        <p>
+            Este proyecto tiene como objetivo resolver los desafíos en la selección de monitores académicos en el entorno universitario, mejorando la calidad educativa y garantizando igualdad de oportunidades para los estudiantes interesados.
+        </p>
+        <p>
+            La propuesta se basa en un enfoque completo y transparente que asegurará la elección eficiente de los monitores más adecuados para este rol de apoyo educativo.
+        </p>
+        <p>
+            Con el tiempo, se podrá desarrollar un software para respaldar y mejorar este proceso integral el cual se tendrán en cuenta los siguientes criterios:
+        </p>
+        <ul>
+            <li>Invitaciones basadas en promedio académico.</li>
+            <li>Invitación por área de estudio.</li>
+            <li>Convocatorias oficiales.</li>
+            <li>Carga de Hojas de Vida.</li>
+        </ul>
+
+        <h2>Pasos del Funcionamiento del Proyecto</h2>
+        <ol>
+            <li>Registro de Estudiantes: Los estudiantes interesados se registran en la plataforma proporcionando sus datos personales y de contacto.</li>
+            <li>Carga de Calificaciones Académicas: Los estudiantes ingresan sus calificaciones académicas en la plataforma. El software valida automáticamente estas calificaciones con registros institucionales si es posible.</li>
+            <li>Identificación de Estudiantes Sobresalientes: El software analiza las calificaciones académicas e identifica a los estudiantes con un rendimiento académico excepcional que cumplan con los estándares establecidos.</li>
+            <li>Evaluación de Áreas de Especialización: Los estudiantes pueden indicar sus áreas de especialización o campos de estudio de interés en sus perfiles.</li>
+            <li>Coincidencia de Áreas de Especialización: El software compara las áreas de especialización de los estudiantes con las materias que requieren monitores y sugiere a los estudiantes que coinciden con esas áreas.</li>
+            <li>Convocatorias Oficiales: El software crea convocatorias formales y estructuradas para el puesto de monitor académico, especificando los requisitos y las materias disponibles.</li>
+            <li>Postulación de Estudiantes: Los estudiantes interesados pueden postularse para convertirse en monitores académicos en las materias de su elección a través de la plataforma.</li>
+            <li>Carga de Hojas de Vida y Documentos: Los aspirantes pueden cargar sus hojas de vida y otros documentos relevantes, como cartas de recomendación y certificados adicionales.</li>
+        </ol>
     </section>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
-</main>
+    <footer>
+        <p>&copy; 2023 - Proyecto de Selección de Monitores Académicos</p>
+    </footer>
+</body>
+</html>
+

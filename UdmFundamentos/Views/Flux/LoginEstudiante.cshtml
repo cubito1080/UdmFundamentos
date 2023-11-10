@@ -29,7 +29,7 @@
                 @Html.ValidationMessageFor(model => model.contraseña, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <br />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Logear Estudiante" class="btn btn-default" />
@@ -48,3 +48,42 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<style>
+    body {
+        background-color: #f8f9fa; /* Color de fondo */
+        color: black; /* Texto negro */
+    }
+
+    h2 {
+        text-align: center; /* Centrar el título */
+    }
+
+    .form-horizontal {
+        max-width: 400px; /* Ancho máximo del formulario */
+        margin: 0 auto; /* Centrar el formulario */
+    }
+
+    .form-control {
+        border: 1px solid black; /* Borde negro predeterminado */
+        transition: border-color 0.3s; /* Transición suave en el cambio de color del borde */
+        border-radius: 5px; /* Bordes más cuadrados */
+        padding: 8px; /* Ajuste de relleno */
+    }
+
+    .form-group .form-control:focus {
+        border-color: #dc3545; /* Borde rojo cuando el campo está enfocado */
+    }
+    
+
+    .btn.btn-default {
+        background-color: #dc3545; /* Fondo rojo para el botón */
+        color: white; /* Texto blanco */
+        border: none; /* Sin borde */
+        border-radius: 5px; /* Bordes más cuadrados */
+        padding: 10px 20px; /* Ajuste del relleno */
+    }
+
+    .alert {
+        margin-top: 20px; /* Añadir espacio superior para la alerta */
+    }
+</style>

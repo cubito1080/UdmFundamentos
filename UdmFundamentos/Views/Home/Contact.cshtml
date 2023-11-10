@@ -1,19 +1,36 @@
-﻿@{
-    ViewBag.Title = "Contact";
-}
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
+﻿<style>
+    main {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
 
+    address {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    strong {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+
+<main aria-labelledby="title">
     <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
+        <strong>Universidad de Medellín</strong><br />
+        +57 (604) 590 45 
+        <br />
+        +57 (604) 590 6999<br />
+        Sede principal: Carrera 87 N° 30 – 65, Medellín – Colombia.<br />
+        Sede Bogotá: Calle 57 # 9-52, Chapinero.<br /><br />
+
+        <strong>Horario de atención:</strong><br />
+        Lunes a viernes de 8:00 a. m. a 12:00 m. y de 2:00 p. m. a 6:00 p.m.
     </address>
 
     <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+        <strong>Support:</strong>   <a href="mailto:support@udem.edu.co">support@udem.edu.co</a><br />
     </address>
 </main>
