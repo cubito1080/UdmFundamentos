@@ -204,6 +204,11 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagenes\descuento.png" />
+    <Content Include="Views\Home\Fondo3.jpg" />
+    <Content Include="Imagenes\habilidades.png" />
+    <Content Include="Imagenes\networking.jpg" />
+    <Content Include="Imagenes\reconocimiento.jpg" />
     <Content Include="Imagenes\UdeM.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
